@@ -1,13 +1,20 @@
 <script setup>
 
 import ContentList from "@/components/ContentList.vue";
+import SortBtnFirst from "@/components/icons/SortBtnFirst.vue";
+import SortBtnSecond from "@/components/icons/SortBtnSecond.vue";
 </script>
 
 <template>
 	<div class="content">
 		<div class="content-wrapper">
 			<div class="content-header">
-			
+				<div class="content-header__title">
+					Учебные сессий
+				</div>
+				<input class="content-header__search" type="text">
+				<SortBtnFirst/>
+				<SortBtnSecond/>
 			</div>
 			<ContentList/>
 		</div>
