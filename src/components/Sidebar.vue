@@ -1,54 +1,66 @@
-<script setup>
+<script>
 
 import Logo from "@/components/icons/Logo.vue";
 import Calendar from "@/components/icons/Calendar.vue";
+import {defineComponent} from "vue";
+import PaginationArrow from "@/components/icons/PaginationArrow.vue";
 
-const links = []
+export default defineComponent({
+	components: {PaginationArrow, Logo, Calendar},
+	data() {
+		return {
+			isOpen: true,
+		}
+	},
+})
 
 </script>
 
 <template>
-	<div class="sidebar">
+	<div class="sidebar" :class="{open: isOpen}">
 		<div class="sidebar-logo">
 			<Logo/>
-			<div>Сим Центр</div>
+			<div class="open-text">Сим Центр</div>
+		</div>
+		<div @click="isOpen = !isOpen" class="sidebar-close">
+			<PaginationArrow/>
 		</div>
 		<div class="sidebar-list">
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Расписание</div>
+				<div class="open-text">Расписание</div>
 			</div>
 			<div class="sidebar-list__item" :class="{active: true}">
 				<Calendar/>
-				<div>Учебные сессии</div>
+				<div class="open-text">Учебные сессии</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Список комнат</div>
+				<div class="open-text">Список комнат</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Пользователи</div>
+				<div class="open-text">Пользователи</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Учебные группы</div>
+				<div class="open-text">Учебные группы</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Список устройств</div>
+				<div class="open-text">Список устройств</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Настройки системы</div>
+				<div class="open-text">Настройки системы</div>
 			</div>
 			<div class="sidebar-list__item">
 				<Calendar/>
-				<div>Архив</div>
+				<div class="open-text">Архив</div>
 			</div>
 		</div>
 		<div class="sidebar-version">
-			Версия 1.02
+			<span class="open-text">Версия</span> 1.02
 		</div>
 	</div>
 </template>
@@ -60,7 +72,6 @@ const links = []
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 274px;
 	padding: 1.25rem 0.75rem;
 	height: 100vh;
 	background: white;
@@ -68,10 +79,27 @@ const links = []
 	&-logo {
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
 		align-items: center;
 		font-size: 1.5rem;
 		font-weight: 800;
+		
+		.open-text {
+			padding-left: 0;
+		}
+	}
+	
+	&-close {
+		position: absolute;
+		top: 2rem;
+		right: -0.75rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 50%;
+		background: #2F3144;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
 	}
 	
 	&-list {
@@ -85,7 +113,6 @@ const links = []
 			display: flex;
 			align-items: center;
 			padding: 0.75rem;
-			gap: 0.75rem;
 			border-radius: 1rem;
 			transition: 0.4s;
 			cursor: pointer;
@@ -97,6 +124,39 @@ const links = []
 			&.active {
 				background: #3761F3;
 				color: white;
+			}
+			
+			.open-text {
+				padding-left: 0;
+			}
+		}
+	}
+	
+	&-version {
+	}
+	
+	.open-text {
+		transition: 0.4s;
+		font-size: 0;
+	}
+	
+	&.open {
+		.open-text {
+			font-size: inherit;
+		}
+		
+		.sidebar {
+			&-logo {
+				.open-text {
+					padding-left: 1rem;
+				}
+			}
+			
+			
+			&-list {
+				.open-text {
+					padding-left: 0.75rem;
+				}
 			}
 		}
 	}
