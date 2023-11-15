@@ -10,7 +10,7 @@ import Content from "@/components/Content.vue";
 	</div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .app {
 	&-wrapper {
@@ -18,6 +18,16 @@ import Content from "@/components/Content.vue";
 		grid-template-columns: auto 1fr;
 		height: 100%;
 	}
+}
+
+button{
+	background: #3761F3;
+	border-radius: 0.75rem;
+	color: white;
+	padding: 0.75rem 1.5rem;
+	font-weight: 800;
+	border: none;
+	outline: none;
 }
 
 </style>
