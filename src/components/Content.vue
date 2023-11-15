@@ -9,7 +9,8 @@ export default defineComponent({
 	components: {SearchIcon, SortBtnSecond, SortBtnFirst, ContentList},
 	data() {
 		return {
-			searchQuery: ''
+			searchQuery: '',
+			isOpenPopup: false
 		}
 	}
 })
@@ -29,11 +30,19 @@ export default defineComponent({
 				</label>
 				<SortBtnFirst/>
 				<SortBtnSecond/>
-				<button>
+				<button @click="isOpenPopup = !isOpenPopup">
 					Создать
 				</button>
 			</div>
 			<ContentList :searchQuery="searchQuery"/>
+		</div>
+		
+		<div class="popup" v-show="isOpenPopup" @click="isOpenPopup = !isOpenPopup">
+			
+			<div class="popup-wrapper" @click.stop>
+				<div class="popup-close" @click="isOpenPopup = !isOpenPopup">close</div>
+				<h2>Окно создания сессии</h2>
+			</div>
 		</div>
 	</div>
 </template>
@@ -76,6 +85,33 @@ export default defineComponent({
 				outline: none;
 			}
 		}
+	}
+}
+
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	&-wrapper {
+		position: relative;
+		background: white;
+		border-radius: 2rem;
+		padding: 3rem;
+		
+	}
+	
+	&-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		font-weight: 800;
 	}
 }
 </style>

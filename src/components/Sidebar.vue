@@ -4,9 +4,10 @@ import Logo from "@/components/icons/Logo.vue";
 import Calendar from "@/components/icons/Calendar.vue";
 import {defineComponent} from "vue";
 import PaginationArrow from "@/components/icons/PaginationArrow.vue";
+import SidebarArrow from "@/components/icons/SidebarArrow.vue";
 
 export default defineComponent({
-	components: {PaginationArrow, Logo, Calendar},
+	components: {SidebarArrow, PaginationArrow, Logo, Calendar},
 	data() {
 		return {
 			isOpen: true,
@@ -23,7 +24,7 @@ export default defineComponent({
 			<div class="open-text">Сим Центр</div>
 		</div>
 		<div @click="isOpen = !isOpen" class="sidebar-close">
-			<PaginationArrow/>
+			<SidebarArrow/>
 		</div>
 		<div class="sidebar-list">
 			<div class="sidebar-list__item">
@@ -100,6 +101,8 @@ export default defineComponent({
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+		transform: rotate(180deg);
+		transition: 0.4s;
 	}
 	
 	&-list {
@@ -150,6 +153,10 @@ export default defineComponent({
 				.open-text {
 					padding-left: 1rem;
 				}
+			}
+			
+			&-close{
+				transform: rotate(0);
 			}
 			
 			

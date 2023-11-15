@@ -1,9 +1,10 @@
 <script>
 import axios from "axios";
 import PaginationArrow from "@/components/icons/PaginationArrow.vue";
+import SortedIcon from "@/components/icons/SortedIcon.vue";
 
 export default {
-	components: {PaginationArrow},
+	components: {SortedIcon, PaginationArrow},
 	props: {
 		searchQuery: String
 	},
@@ -81,8 +82,18 @@ export default {
 		<table v-if="items.length > 0" class="content-list__table">
 			<thead>
 			<tr>
-				<th @click="changeSortTitle">title</th>
-				<th @click="changeSortTitle">body</th>
+				<th @click="changeSortTitle">
+					<div class="content-list__table-head">
+						<div>title</div>
+						<SortedIcon v-show="sortTitle==='title'"/>
+					</div>
+				</th>
+				<th @click="changeSortTitle">
+					<div class="content-list__table-head">
+						<div>body</div>
+						<SortedIcon v-show="sortTitle==='body'"/>
+					</div>
+				</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -142,12 +153,18 @@ export default {
 			background: #F5F7F9;
 			font-size: 17px;
 			font-weight: 800;
+			cursor: pointer;
 		}
 		
 		tr {
 			&:nth-child(2n) {
 				background: #F5F7F9;
 			}
+		}
+		&-head{
+			display: flex;
+			gap: 1rem;
+			align-items: center;
 		}
 	}
 }
